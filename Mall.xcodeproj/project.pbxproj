@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		49FA82C21E67A52B00C909C5 /* MediaAuthentication.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49FA82C11E67A52B00C909C5 /* MediaAuthentication.xcassets */; };
+		49FA82C81E67E21A00C909C5 /* NewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FA82C61E67E21A00C909C5 /* NewsViewCell.swift */; };
+		49FA82C91E67E21A00C909C5 /* NewsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49FA82C71E67E21A00C909C5 /* NewsViewCell.xib */; };
+		49FA82CC1E67FE9D00C909C5 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FA82CB1E67FE9D00C909C5 /* IntroViewController.swift */; };
+		49FA82CE1E67FEE500C909C5 /* MedialItems.xcstickers in Resources */ = {isa = PBXBuildFile; fileRef = 49FA82CD1E67FEE500C909C5 /* MedialItems.xcstickers */; };
 		70DE71A9474B64668A6C5218 /* Pods_Mall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF1AC11FAE5F3453835E2565 /* Pods_Mall.framework */; };
 		F00A944F1E64AA8600630EE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A944E1E64AA8600630EE8 /* AppDelegate.swift */; };
 		F00A94511E64AA8600630EE8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A94501E64AA8600630EE8 /* ViewController.swift */; };
@@ -32,6 +36,10 @@
 
 /* Begin PBXFileReference section */
 		49FA82C11E67A52B00C909C5 /* MediaAuthentication.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MediaAuthentication.xcassets; sourceTree = "<group>"; };
+		49FA82C61E67E21A00C909C5 /* NewsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewCell.swift; sourceTree = "<group>"; };
+		49FA82C71E67E21A00C909C5 /* NewsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsViewCell.xib; sourceTree = "<group>"; };
+		49FA82CB1E67FE9D00C909C5 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		49FA82CD1E67FEE500C909C5 /* MedialItems.xcstickers */ = {isa = PBXFileReference; lastKnownFileType = folder.stickers; path = MedialItems.xcstickers; sourceTree = "<group>"; };
 		CA497B72188E32824980D6B8 /* Pods-Mall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mall.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mall/Pods-Mall.release.xcconfig"; sourceTree = "<group>"; };
 		F00A944B1E64AA8600630EE8 /* Mall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F00A944E1E64AA8600630EE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +87,24 @@
 				CA497B72188E32824980D6B8 /* Pods-Mall.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		49FA82C31E67D8EE00C909C5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				49FA82C61E67E21A00C909C5 /* NewsViewCell.swift */,
+				49FA82C71E67E21A00C909C5 /* NewsViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		49FA82CA1E67FE7600C909C5 /* IntroViewController */ = {
+			isa = PBXGroup;
+			children = (
+				49FA82CB1E67FE9D00C909C5 /* IntroViewController.swift */,
+				49FA82CD1E67FEE500C909C5 /* MedialItems.xcstickers */,
+			);
+			path = IntroViewController;
 			sourceTree = "<group>";
 		};
 		7DA568E8150EF5BA008B7B75 /* Frameworks */ = {
@@ -138,6 +164,7 @@
 		F00A94661E64D74B00630EE8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				49FA82CA1E67FE7600C909C5 /* IntroViewController */,
 				F0E8E6321E66509F00C68F85 /* LogIn */,
 				F00A946C1E64DA4300630EE8 /* Home */,
 				F00A94671E64D86F00630EE8 /* LeftMenu */,
@@ -158,6 +185,7 @@
 		F00A946C1E64DA4300630EE8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				49FA82C31E67D8EE00C909C5 /* Views */,
 				F00A946D1E64DA5100630EE8 /* HomeViewController.swift */,
 				F00A946E1E64DA5100630EE8 /* HomeViewController.xib */,
 			);
@@ -271,12 +299,14 @@
 			files = (
 				F0E8E6361E6650CC00C68F85 /* LogInViewController.xib in Resources */,
 				F00A94591E64AA8600630EE8 /* LaunchScreen.storyboard in Resources */,
+				49FA82C91E67E21A00C909C5 /* NewsViewCell.xib in Resources */,
 				F0E8E6381E665FED00C68F85 /* GoogleService-Info.plist in Resources */,
 				F0C2AC211E65216300612CBC /* ItemMenuTableViewCell.xib in Resources */,
 				49FA82C21E67A52B00C909C5 /* MediaAuthentication.xcassets in Resources */,
 				F00A94561E64AA8600630EE8 /* Assets.xcassets in Resources */,
 				F00A94701E64DA5100630EE8 /* HomeViewController.xib in Resources */,
 				F00A946B1E64D89000630EE8 /* LeftMenuViewController.xib in Resources */,
+				49FA82CE1E67FEE500C909C5 /* MedialItems.xcstickers in Resources */,
 				F00A94541E64AA8600630EE8 /* Main.storyboard in Resources */,
 				F0C2AC251E66215400612CBC /* MediaMenu.xcassets in Resources */,
 			);
@@ -340,11 +370,13 @@
 				F0C2AC1C1E650B4A00612CBC /* SWRevealViewController.m in Sources */,
 				F00A94511E64AA8600630EE8 /* ViewController.swift in Sources */,
 				F00A94741E64ED3800630EE8 /* ColorExtensions.swift in Sources */,
+				49FA82CC1E67FE9D00C909C5 /* IntroViewController.swift in Sources */,
 				F00A944F1E64AA8600630EE8 /* AppDelegate.swift in Sources */,
 				F00A946A1E64D89000630EE8 /* LeftMenuViewController.swift in Sources */,
 				F0C2AC201E65216300612CBC /* ItemMenuTableViewCell.swift in Sources */,
 				F0C2AC231E652AD100612CBC /* ItemMenu.swift in Sources */,
 				F00A94751E64ED3800630EE8 /* NumberExtensions.swift in Sources */,
+				49FA82C81E67E21A00C909C5 /* NewsViewCell.swift in Sources */,
 				F0E8E6351E6650CC00C68F85 /* LogInViewController.swift in Sources */,
 				F00A946F1E64DA5100630EE8 /* HomeViewController.swift in Sources */,
 			);

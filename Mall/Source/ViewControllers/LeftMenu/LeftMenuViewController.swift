@@ -9,7 +9,8 @@
 import UIKit
 
 class LeftMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
+    let screenSize: CGRect = UIScreen.main.bounds
     var currentIndex:IndexPath?
     var currentData : [ItemMenu] = []
     var tableView: UITableView!
@@ -109,10 +110,11 @@ class LeftMenuViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - Navigation
 
     fileprivate func setupSideMenu(){
+        
         let valuePro:CGFloat  = CGFloat(NSNumber.getPropotionalValueDevice())
         
         let topBar:UIView = UIView()
-        topBar.frame =  CGRect(x:0, y:20, width:  self.view.frame.size.width, height: 209*valuePro)
+        topBar.frame =  CGRect(x:0, y:20, width:  screenSize.size.width, height: 209*valuePro)
         topBar.backgroundColor = UIColor.init(hexString: "4f1563").withAlphaComponent(1.0)
         self.view.addSubview(topBar)
         
@@ -155,7 +157,7 @@ class LeftMenuViewController: UIViewController, UITableViewDelegate, UITableView
         let valuePro:CGFloat  = CGFloat(NSNumber.getPropotionalValueDevice())
         
         let contentOptions:UIView = UIView()
-        contentOptions.frame  =  CGRect(x:0, y:229*valuePro, width:267*valuePro, height:self.view.frame.size.height-229*valuePro)
+        contentOptions.frame  =  CGRect(x:0, y:229*valuePro, width:267*valuePro, height: screenSize.size.height-229*valuePro)
         contentOptions.backgroundColor =  UIColor.init(hexString: "f4f4f4")
         
        
