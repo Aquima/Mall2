@@ -15,7 +15,7 @@ class HomeViewController: UIViewController,SWRevealViewControllerDelegate {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         setupSideMenu()
-
+        
     }
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return UIStatusBarStyle.lightContent

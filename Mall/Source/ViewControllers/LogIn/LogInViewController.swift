@@ -24,7 +24,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     var activityIndicatorView:NVActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        FIRApp.configure()
+
         drawBody()
         // Do any additional setup after loading the view.
     }
@@ -39,12 +39,15 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     func drawBody(){
         self.navigationController?.isNavigationBarHidden = true
         self.view.backgroundColor = UIColor.init(hexString: "4f1563")
+        
         let valuePro:CGFloat  = CGFloat(NSNumber.getPropotionalValueDevice())
+        
         let btnTapView = UIButton()
         btnTapView.frame = view.bounds
         btnTapView.addTarget(self, action: #selector(self.resignFirstResponderList), for: UIControlEvents.touchUpInside)
         view.addSubview(btnTapView)
-        contentForm.frame =  CGRect(x: (self.view.frame.size.width-320*valuePro)/2, y: 255*valuePro, width: 320*valuePro, height: 314*valuePro)
+        
+        contentForm.frame =  CGRect(x: 0, y: 255*valuePro, width: 320*valuePro, height: 314*valuePro)
         
         let btnTapForm = UIButton()
         btnTapForm.frame = contentForm.bounds
@@ -109,17 +112,15 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         inputPassword.delegate = self
         inputPassword.keyboardType = UIKeyboardType.default
         inputPassword.returnKeyType = UIReturnKeyType.done
-       
-        //     inputMail.text = "raul@gmail.com"
+ 
+        //     inputMail.text = "raul.quispe@live.com"
         //   inputPassword.text = "123456"
         viewContentTextField.addSubview(inputPassword)
         
         inputList.append(inputPassword)
  
-        
-        
         self.btnLogeo = UIButton()
-        self.btnLogeo.frame =  CGRect(x: (self.view.frame.size.width-285*valuePro)/2, y: 118*valuePro, width: 285*valuePro, height: 44*valuePro)
+        self.btnLogeo.frame =  CGRect(x: (contentForm.frame.size.width-285*valuePro)/2, y: 118*valuePro, width: 285*valuePro, height: 44*valuePro)
         self.btnLogeo.titleLabel?.font = UIFont (name: "Avenir-Light", size: 13*valuePro)
         self.btnLogeo.setTitle("Iniciar Sesión",for: UIControlState.normal)
         self.btnLogeo.layer.borderColor = UIColor.black.cgColor
@@ -135,18 +136,16 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         activityIndicatorView.startAnimating()
         contentForm.addSubview(activityIndicatorView)
         contentForm.addSubview(self.btnLogeo)
-        
-        
-        
+ 
         self.btnRegis = UIButton()
-        self.btnRegis.frame =  CGRect(x: (self.view.frame.size.width-285*valuePro)/2, y: 172.57*valuePro, width: 285*valuePro, height: 44*valuePro)
+        self.btnRegis.frame =  CGRect(x: (contentForm.frame.size.width-285*valuePro)/2, y: 172.57*valuePro, width: 285*valuePro, height: 44*valuePro)
         self.btnRegis.titleLabel?.font = UIFont (name: "Avenir-Light", size: 13*valuePro)
         self.btnRegis.setTitle("Registrate",for: UIControlState.normal)
         self.btnRegis.layer.borderColor = UIColor.black.cgColor
         self.btnRegis.layer.cornerRadius = btnRegis.frame.size.height/2
         self.btnRegis.backgroundColor = UIColor.init(hexString: "00AFF1")
         self.btnRegis.setTitleColor(UIColor.white, for: .normal)
-        self.btnRegis.addTarget(self, action: #selector(self.loginManualValidate), for: UIControlEvents.touchUpInside)
+        self.btnRegis.addTarget(self, action: #selector(self.registerManualValidate), for: UIControlEvents.touchUpInside)
         
         let frame1 =  CGRect(x: btnRegis.frame.origin.x + (btnRegis.frame.size.width-35*valuePro)/2, y:  btnRegis.frame.origin.y + (btnRegis.frame.size.height-35*valuePro)/2, width:35*valuePro, height: 35*valuePro)
         activityIndicatorView = NVActivityIndicatorView(frame: frame1,
@@ -159,7 +158,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         
         btnOlvidarPass = UIButton()
-        self.btnOlvidarPass.frame =  CGRect(x: (self.view.frame.size.width-150*valuePro)/2, y: 229.78*valuePro, width: 150*valuePro, height: 14.56*valuePro)
+        self.btnOlvidarPass.frame =  CGRect(x: (contentForm.frame.size.width-150*valuePro)/2, y: 229.78*valuePro, width: 150*valuePro, height: 14.56*valuePro)
         self.btnOlvidarPass.titleLabel?.font = UIFont (name: "Avenir-Light", size: 13*valuePro)
         self.btnOlvidarPass.setTitle("¿Olvidaste tu contraseña?",for: UIControlState.normal)
         self.btnOlvidarPass.backgroundColor = UIColor.init(hexString: "4f1563")
@@ -222,22 +221,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             let email = inputTextMail.text
             let password = inputTextPassword.text
        
-//            FIRAuth.auth()?.createUser(withEmail: email!, password: password!, completion: { (user: FIRUser?, error) in
-//                 self.activityIndicatorView.stopAnimating()
-//                self.btnEnter.isHidden = false
-//                if error == nil {
-//                   
-//                    print("registration successful")
-//                }else{
-//
-//                    print("registration failure:\nerror:\(error.debugDescription)")
-//                }
-//            })
             FIRAuth.auth()?.signIn(withEmail: email!, password: password!, completion: { (user: FIRUser?, error) in
                                 self.activityIndicatorView.stopAnimating()
                                 self.btnLogeo.isHidden = false
                                 if error == nil {
-                
+
                                     print("signIn successful")
                                 }else{
                 
@@ -251,15 +239,39 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             sender.isHidden = false
         }
 
-           }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
+    func registerManualValidate(sender:UIButton)  {
+        //call to firebase
+        activityIndicatorView.startAnimating()
+        let inputTextMail:UITextField = self.inputList[inputType.keyMail.hashValue]
+        let inputTextPassword:UITextField = self.inputList[inputType.keyPassword.hashValue]
+        self.btnRegis.isHidden = true
+        
+        if inputTextMail.text != "" && inputTextPassword.text != "" {
+            
+            let email = inputTextMail.text
+            let password = inputTextPassword.text
+            
+            FIRAuth.auth()?.createUser(withEmail: email!, password: password!, completion: { (user: FIRUser?, error) in
+
+                self.activityIndicatorView.stopAnimating()
+                self.btnRegis.isHidden = false
+                if error == nil {
+
+                    print("register successful")
+                }else{
+                    
+                    print("register failure:\nerror:\(error.debugDescription)")
+                }
+            })
+            
+            
+        }else{
+            
+            sender.isHidden = false
+        }
+        
+    }
+
 
 }

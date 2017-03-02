@@ -109,10 +109,12 @@ class LeftMenuViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - Navigation
 
     fileprivate func setupSideMenu(){
+        let screenSize: CGRect = UIScreen.main.bounds
+
         let valuePro:CGFloat  = CGFloat(NSNumber.getPropotionalValueDevice())
         
         let topBar:UIView = UIView()
-        topBar.frame =  CGRect(x:0, y:20, width:  self.view.frame.size.width, height: 209*valuePro)
+        topBar.frame =  CGRect(x:0, y:20, width:  screenSize.size.width, height: 209*valuePro)
         topBar.backgroundColor = UIColor.init(hexString: "4f1563").withAlphaComponent(1.0)
         self.view.addSubview(topBar)
         
@@ -152,10 +154,12 @@ class LeftMenuViewController: UIViewController, UITableViewDelegate, UITableView
     }
     // MARK: - DrawMenu UItableMenu
     func drawBody(){
+        let screenSize: CGRect = UIScreen.main.bounds
+    
         let valuePro:CGFloat  = CGFloat(NSNumber.getPropotionalValueDevice())
         
         let contentOptions:UIView = UIView()
-        contentOptions.frame  =  CGRect(x:0, y:229*valuePro, width:267*valuePro, height:self.view.frame.size.height-229*valuePro)
+        contentOptions.frame  =  CGRect(x:0, y:229*valuePro, width:267*valuePro, height:screenSize.size.height-229*valuePro)
         contentOptions.backgroundColor =  UIColor.init(hexString: "f4f4f4")
         
        
@@ -205,6 +209,22 @@ class LeftMenuViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Do here
         currentIndex = indexPath
+        let revealVC:SWRevealViewController = self.revealViewController()
+        if indexPath.row == 0 {
+            let homeVC = HomeViewController()
+            let frontNavigationController:UINavigationController
+            frontNavigationController =  UINavigationController(rootViewController: homeVC);
+            revealVC.pushFrontViewController(frontNavigationController, animated: true)
+            
+        }else if indexPath.row == 6 {
+           let logInVC = LogInViewController()
+           let frontNavigationController:UINavigationController
+           frontNavigationController =  UINavigationController(rootViewController: logInVC);
+           revealVC.pushFrontViewController(frontNavigationController, animated: true)
+            
+        }else{
+            revealVC.setFrontViewPosition(.left, animated: true)
+        }
     }
     
     

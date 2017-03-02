@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+import FirebaseDatabase
+import FirebaseAuth
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate,SWRevealViewControllerDelegate,GMBLPlaceManagerDelegate {
@@ -19,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var placeEvents : [GMBLVisit] = []
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        FIRApp.configure()
         // Override point for customization after application launch.
          window? = UIWindow()
         //this is for set permissions
@@ -56,11 +59,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     func setupGimbal(){
         Gimbal.setAPIKey("748e3614-2b79-45dc-bc9b-5a36383b9eb4", options: nil)
-        
+ 
         placeManager = GMBLPlaceManager()
         self.placeManager.delegate = self
         GMBLPlaceManager.startMonitoring()
-        
+     //   GMBLPlaceManager.
         GMBLCommunicationManager.startReceivingCommunications()
     }
     func applicationWillResignActive(_ application: UIApplication) {
@@ -116,16 +119,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func placeManager(_ manager: GMBLPlaceManager!, didBegin visit: GMBLVisit!) -> Void {
         NSLog("Begin %@", visit.place.description)
         self.placeEvents.insert(visit, at: 0)
-       showPushNotification(title: visit.place.debugDescription, details: "cool")
-        //self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with:UITableViewRowAnimation.automatic)
+        showPushNotification(title: "Bienvenido a Real Plaza", details: "power on")
+        //let ref = FIRDatabase.database().reference()
+//        ref.child(visit.visitID!).setValue(["arrivalDate": visit.arrivalDate!.description])
+//        ref.child("\(visit.visitID!)/departureDate").setValue(visit.departureDate?.description ?? "")
+//        ref.child("\(visit.visitID!)/dwellTime").setValue(visit.dwellTime)
+//        ref.child("\(visit.visitID!)/place").setValue(visit.place.name!)
+//        ref.child("\(visit.visitID!)/displayname").setValue("")
+//        if let authEmail =  FIRAuth.auth()?.currentUser?.email  {
+//             ref.child("\(visit.visitID!)/email").setValue(authEmail)
+//        }else{
+//             ref.child("\(visit.visitID!)/email").setValue("")
+//        }
+       
+        let ref = FIRDatabase.database().reference()
+        let key = ref.child("visits").childByAutoId().key
+        let post:[String:Any] = ["arrivalDate": visit.arrivalDate?.description ?? "" ,
+                                 "departureDate": visit.departureDate?.description ?? "",
+                                 "dwellTime": visit.dwellTime,
+                                 "email": FIRAuth.auth()?.currentUser?.email ?? ""]
+        let childUpdates = ["/visits/\(key)": post]
+        ref.updateChildValues(childUpdates)
+       
     }
 //    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void){
 //        
 //    }
     func placeManager(_ manager: GMBLPlaceManager!, didEnd visit: GMBLVisit!) -> Void {
         NSLog("End %@", visit.place.description)
+        showPushNotification(title: "Vuelve Pronto a Real Plaza", details: "power off")
         self.placeEvents.insert(visit, at: 0)
         // self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableViewRowAnimation.automatic)
+        let ref = FIRDatabase.database().reference()
+        let key = ref.child("visits").childByAutoId().key
+        let post:[String:Any] = ["arrivalDate": visit.arrivalDate?.description ?? "" ,
+                                 "departureDate": visit.departureDate?.description ?? "",
+                                 "dwellTime": visit.dwellTime,
+                                 "email": FIRAuth.auth()?.currentUser?.email ?? ""]
+        let childUpdates = ["/visits/\(key)": post]
+        ref.updateChildValues(childUpdates)
     }
     // MARK : LOCALNOTIFICATIONS
     func showPushNotification(title: String, details: String) {
