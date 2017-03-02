@@ -9,7 +9,8 @@
 import UIKit
 
 class LeftMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
+    let screenSize: CGRect = UIScreen.main.bounds
     var currentIndex:IndexPath?
     var currentData : [ItemMenu] = []
     var tableView: UITableView!
