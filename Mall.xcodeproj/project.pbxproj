@@ -19,6 +19,7 @@
 		F00A94701E64DA5100630EE8 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F00A946E1E64DA5100630EE8 /* HomeViewController.xib */; };
 		F00A94741E64ED3800630EE8 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A94721E64ED3800630EE8 /* ColorExtensions.swift */; };
 		F00A94751E64ED3800630EE8 /* NumberExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A94731E64ED3800630EE8 /* NumberExtensions.swift */; };
+		F08FAD411E67BBEC0065A2C6 /* AppDelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08FAD401E67BBEC0065A2C6 /* AppDelegateExtension.swift */; };
 		F0C2AC1C1E650B4A00612CBC /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C2AC1B1E650B4A00612CBC /* SWRevealViewController.m */; };
 		F0C2AC201E65216300612CBC /* ItemMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C2AC1E1E65216300612CBC /* ItemMenuTableViewCell.swift */; };
 		F0C2AC211E65216300612CBC /* ItemMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0C2AC1F1E65216300612CBC /* ItemMenuTableViewCell.xib */; };
@@ -45,6 +46,7 @@
 		F00A946E1E64DA5100630EE8 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		F00A94721E64ED3800630EE8 /* ColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		F00A94731E64ED3800630EE8 /* NumberExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberExtensions.swift; sourceTree = "<group>"; };
+		F08FAD401E67BBEC0065A2C6 /* AppDelegateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateExtension.swift; sourceTree = "<group>"; };
 		F0C2AC1A1E650B4A00612CBC /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		F0C2AC1B1E650B4A00612CBC /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		F0C2AC1E1E65216300612CBC /* ItemMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemMenuTableViewCell.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			children = (
 				F00A94721E64ED3800630EE8 /* ColorExtensions.swift */,
 				F00A94731E64ED3800630EE8 /* NumberExtensions.swift */,
+				F08FAD401E67BBEC0065A2C6 /* AppDelegateExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				F0C2AC231E652AD100612CBC /* ItemMenu.swift in Sources */,
 				F00A94751E64ED3800630EE8 /* NumberExtensions.swift in Sources */,
 				F0E8E6351E6650CC00C68F85 /* LogInViewController.swift in Sources */,
+				F08FAD411E67BBEC0065A2C6 /* AppDelegateExtension.swift in Sources */,
 				F00A946F1E64DA5100630EE8 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

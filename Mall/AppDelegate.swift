@@ -10,11 +10,14 @@ import UIKit
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate,SWRevealViewControllerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate,SWRevealViewControllerDelegate,GMBLPlaceManagerDelegate {
 
     var window: UIWindow?
     var navigationController:UINavigationController?
 
+    var placeManager: GMBLPlaceManager!
+    var placeEvents : [GMBLVisit] = []
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
          window? = UIWindow()
@@ -38,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let sidebar = LeftMenuViewController()
         
-        let homepage = LogInViewController()
+        let homepage = HomeViewController()
         
         frontNavigationController =  UINavigationController(rootViewController: homepage);
        
@@ -47,11 +50,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //    revealController.delegate = self;
     
         window?.rootViewController  = mainRevealController
-     //   window?.makeKeyAndVisible()
-        
+     //this is for setup GIMBAL SDK
+        self.setupGimbal()
         return true
     }
-
+    func setupGimbal(){
+        Gimbal.setAPIKey("748e3614-2b79-45dc-bc9b-5a36383b9eb4", options: nil)
+        
+        placeManager = GMBLPlaceManager()
+        self.placeManager.delegate = self
+        GMBLPlaceManager.startMonitoring()
+        
+        GMBLCommunicationManager.startReceivingCommunications()
+    }
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -101,5 +112,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let notificationName = Notification.Name("prueba")
         NotificationCenter.default.post(name: notificationName, object: id)
     }
+    // MARK : GIMBAL
+    func placeManager(_ manager: GMBLPlaceManager!, didBegin visit: GMBLVisit!) -> Void {
+        NSLog("Begin %@", visit.place.description)
+        self.placeEvents.insert(visit, at: 0)
+       showPushNotification(title: visit.place.debugDescription, details: "cool")
+        //self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with:UITableViewRowAnimation.automatic)
+    }
+//    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void){
+//        
+//    }
+    func placeManager(_ manager: GMBLPlaceManager!, didEnd visit: GMBLVisit!) -> Void {
+        NSLog("End %@", visit.place.description)
+        self.placeEvents.insert(visit, at: 0)
+        // self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableViewRowAnimation.automatic)
+    }
+    // MARK : LOCALNOTIFICATIONS
+    func showPushNotification(title: String, details: String) {
+        if #available(iOS 10.0, *) {
+            let interval = TimeInterval(1)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
+            let content = UNMutableNotificationContent()
+            content.title = title
+            content.body = details
+            let req = UNNotificationRequest(identifier: "localPushNotification", content: content, trigger: trigger)
+            let center = UNUserNotificationCenter.current()
+            center.getNotificationSettings(completionHandler: { settings in
+                switch settings.authorizationStatus {
+                case .notDetermined:
+                    center.requestAuthorization(options: [.alert, .sound], completionHandler: { ok, err in
+                        if let err = err {
+                            print(err)
+                            return
+                        }
+                        if ok {
+                            center.add(req, withCompletionHandler: nil)
+                        }
+                    })
+                case .denied: break
+                case .authorized:
+                    center.add(req, withCompletionHandler: nil)
+                    break
+                }
+            })
+            
+        } else {
+            // handle old iOS versions
+        }
+    }
+    
+
 }
 

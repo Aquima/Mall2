@@ -78,7 +78,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         inputPassword.delegate = self
         inputPassword.keyboardType = UIKeyboardType.default
         inputPassword.returnKeyType = UIReturnKeyType.done
-        
+       
         //     inputMail.text = "raul@gmail.com"
         //   inputPassword.text = "123456"
         contentForm.addSubview(inputPassword)

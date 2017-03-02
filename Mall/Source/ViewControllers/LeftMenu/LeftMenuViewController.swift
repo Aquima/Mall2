@@ -173,7 +173,7 @@ class LeftMenuViewController: UIViewController, UITableViewDelegate, UITableView
         let indexPath = IndexPath(row: 0, section: 0);
         currentIndex = indexPath
         self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.none)
-//self.tableView(self.tableView, didSelectRowAt: indexPath)
+
         self.view.addSubview(contentOptions)
         
     }

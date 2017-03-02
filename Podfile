@@ -12,4 +12,6 @@ target 'Mall' do
   pod 'Firebase/Messaging'
   pod 'Firebase/Auth'
   pod 'NVActivityIndicatorView'
+  pod 'google-cast-sdk'
+  pod 'google-cast-remote-display-sdk'
 end
