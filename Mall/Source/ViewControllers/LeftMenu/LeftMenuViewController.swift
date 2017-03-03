@@ -110,8 +110,7 @@ class LeftMenuViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - Navigation
 
     fileprivate func setupSideMenu(){
-        let screenSize: CGRect = UIScreen.main.bounds
-
+        
         let valuePro:CGFloat  = CGFloat(NSNumber.getPropotionalValueDevice())
         
         let topBar:UIView = UIView()
@@ -155,12 +154,10 @@ class LeftMenuViewController: UIViewController, UITableViewDelegate, UITableView
     }
     // MARK: - DrawMenu UItableMenu
     func drawBody(){
-        let screenSize: CGRect = UIScreen.main.bounds
-    
         let valuePro:CGFloat  = CGFloat(NSNumber.getPropotionalValueDevice())
         
         let contentOptions:UIView = UIView()
-        contentOptions.frame  =  CGRect(x:0, y:229*valuePro, width:267*valuePro, height:screenSize.size.height-229*valuePro)
+        contentOptions.frame  =  CGRect(x:0, y:229*valuePro, width:267*valuePro, height: screenSize.size.height-229*valuePro)
         contentOptions.backgroundColor =  UIColor.init(hexString: "f4f4f4")
         
        
@@ -178,7 +175,7 @@ class LeftMenuViewController: UIViewController, UITableViewDelegate, UITableView
         let indexPath = IndexPath(row: 0, section: 0);
         currentIndex = indexPath
         self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.none)
-
+//self.tableView(self.tableView, didSelectRowAt: indexPath)
         self.view.addSubview(contentOptions)
         
     }

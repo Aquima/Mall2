@@ -222,19 +222,38 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             let password = inputTextPassword.text
        
             FIRAuth.auth()?.signIn(withEmail: email!, password: password!, completion: { (user: FIRUser?, error) in
-                                self.activityIndicatorView.stopAnimating()
-                                self.btnLogeo.isHidden = false
-                                if error == nil {
-
-                                    print("signIn successful")
-                                }else{
                 
-                                    print("signIn failure:\nerror:\(error.debugDescription)")
-                                }
-                            })
+                self.activityIndicatorView.stopAnimating()
+                self.btnLogeo.isHidden = false
+                if error != nil {
+                    if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
+                        
+                        switch errCode {
+                        case .errorCodeInvalidEmail:
+                            print("invalid email")
+                            self.showAlertError(message: "El Correo Electronico no es valido")
+                        case .errorCodeWrongPassword:
+                            print("invalid password")
+                            self.showAlertError(message: "Contraseña incorrecta")
+                            //                    case .error:
+                            //                        print("invalid password")
+                        //
+                        default:
+                            print("Other error!")
+                            self.showAlertError(message: "Verifique los datos ingresados")
+                        }
+                        
+                    }
+                }else{
+                      print("signIn successful")
+                      self.showAlertError(message: "Bienvenido!")
+                }
+               
+                
+            })
 
 
-                    }else{
+        }else{
             
             sender.isHidden = false
         }
@@ -272,6 +291,15 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
-
+    func showAlertError(message:String){
+        let uiAlert = UIAlertController(title: "Real Plaza", message: message, preferredStyle: UIAlertControllerStyle.alert)
+       
+        
+        uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+           
+        }))
+         self.present(uiAlert, animated: true, completion: nil)
+      
+    }
 
 }
