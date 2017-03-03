@@ -12,6 +12,7 @@
 		49FA82C91E67E21A00C909C5 /* NewsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49FA82C71E67E21A00C909C5 /* NewsViewCell.xib */; };
 		49FA82CC1E67FE9D00C909C5 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FA82CB1E67FE9D00C909C5 /* IntroViewController.swift */; };
 		49FA82CE1E67FEE500C909C5 /* MedialItems.xcstickers in Resources */ = {isa = PBXBuildFile; fileRef = 49FA82CD1E67FEE500C909C5 /* MedialItems.xcstickers */; };
+		49FA82D51E6865BE00C909C5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FA82D41E6865BE00C909C5 /* RegisterViewController.swift */; };
 		70DE71A9474B64668A6C5218 /* Pods_Mall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF1AC11FAE5F3453835E2565 /* Pods_Mall.framework */; };
 		F00A944F1E64AA8600630EE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A944E1E64AA8600630EE8 /* AppDelegate.swift */; };
 		F00A94511E64AA8600630EE8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A94501E64AA8600630EE8 /* ViewController.swift */; };
@@ -42,6 +43,7 @@
 		49FA82C71E67E21A00C909C5 /* NewsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsViewCell.xib; sourceTree = "<group>"; };
 		49FA82CB1E67FE9D00C909C5 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		49FA82CD1E67FEE500C909C5 /* MedialItems.xcstickers */ = {isa = PBXFileReference; lastKnownFileType = folder.stickers; path = MedialItems.xcstickers; sourceTree = "<group>"; };
+		49FA82D41E6865BE00C909C5 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		CA497B72188E32824980D6B8 /* Pods-Mall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mall.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mall/Pods-Mall.release.xcconfig"; sourceTree = "<group>"; };
 		F009A9C31E67D38500EBAD25 /* Mall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mall.entitlements; sourceTree = "<group>"; };
 		F00A944B1E64AA8600630EE8 /* Mall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mall.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +115,14 @@
 			path = IntroViewController;
 			sourceTree = "<group>";
 		};
+		49FA82CF1E685FC200C909C5 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				49FA82D41E6865BE00C909C5 /* RegisterViewController.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
 		7DA568E8150EF5BA008B7B75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +182,7 @@
 		F00A94661E64D74B00630EE8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				49FA82CF1E685FC200C909C5 /* Register */,
 				49FA82CA1E67FE7600C909C5 /* IntroViewController */,
 				F0E8E6321E66509F00C68F85 /* LogIn */,
 				F00A946C1E64DA4300630EE8 /* Home */,
@@ -389,6 +400,7 @@
 				F0C2AC231E652AD100612CBC /* ItemMenu.swift in Sources */,
 				F00A94751E64ED3800630EE8 /* NumberExtensions.swift in Sources */,
 				49FA82C81E67E21A00C909C5 /* NewsViewCell.swift in Sources */,
+				49FA82D51E6865BE00C909C5 /* RegisterViewController.swift in Sources */,
 				F0E8E6351E6650CC00C68F85 /* LogInViewController.swift in Sources */,
 				F08FAD411E67BBEC0065A2C6 /* AppDelegateExtension.swift in Sources */,
 				F00A946F1E64DA5100630EE8 /* HomeViewController.swift in Sources */,

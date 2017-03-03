@@ -44,7 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let sidebar = LeftMenuViewController()
         
-        let homepage = HomeViewController()
+        let homepage = RegisterViewController()
+        
         
         frontNavigationController =  UINavigationController(rootViewController: homepage);
        
