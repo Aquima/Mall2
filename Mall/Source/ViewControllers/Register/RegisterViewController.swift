@@ -7,9 +7,28 @@
 //
 
 import UIKit
-
-class RegisterViewController: UIViewController {
-
+enum inputRegisterType{
+    case keyName
+    case keyDocument
+    case keyEmail
+    case keyPassword
+}
+class RegisterViewController: UIViewController, UITextFieldDelegate {
+   let screenSize: CGRect = UIScreen.main.bounds
+    
+    var inputList:[UITextField] = []
+    
+    @IBOutlet weak var linePassword: UIView!
+    @IBOutlet weak var lineDocument: UIView!
+    @IBOutlet weak var lineMail: UIView!
+    @IBOutlet weak var lineName: UIView!
+    @IBOutlet weak var imgLogo: UIImageView!
+    @IBOutlet weak var btnCreated: UIButton!
+    @IBOutlet weak var lblTerms: UILabel!
+    @IBOutlet weak var txtDocument: UITextField!
+    @IBOutlet weak var txtPassword: UITextField!
+    @IBOutlet weak var txtMail: UITextField!
+    @IBOutlet weak var txtName: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Initialization code
@@ -28,94 +47,104 @@ class RegisterViewController: UIViewController {
         
     }
     
-    
-    func drawBody(){
+    func drawBody()  {
         view.backgroundColor = UIColor.init(hexString: "f2f2f2")
         let valuePro:CGFloat  = CGFloat(NSNumber.getPropotionalValueDevice())
+        imgLogo.frame = CGRect(x:(320*valuePro-150*valuePro)/2, y: 56*valuePro, width: 150*valuePro, height: 60*valuePro)
         
+        txtName.frame = CGRect(x:71.51*valuePro, y: 148.089*valuePro, width: 200*valuePro, height: 30*valuePro)
+        txtDocument.frame = CGRect(x:71.51*valuePro, y: 202.406*valuePro, width: 200*valuePro, height: 30*valuePro)
+        txtMail.frame = CGRect(x:71.51*valuePro, y: 251.406*valuePro, width: 200*valuePro, height: 30*valuePro)
+        txtPassword.frame = CGRect(x:71.51*valuePro, y: 300.406*valuePro, width: 200*valuePro, height: 30*valuePro)
         
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "logoMall"))
-        imageView.frame = CGRect(x:(320*valuePro-136.30*valuePro)/2, y: 64.388*valuePro, width: 136.30*valuePro, height: 41.61*valuePro)
-        imageView.backgroundColor = UIColor.init(hexString: "4f1563")
-        self.view.addSubview(imageView)
+        txtName.tag = inputRegisterType.keyName.hashValue
+        txtDocument.tag = inputRegisterType.keyDocument.hashValue
+        txtMail.tag = inputRegisterType.keyEmail.hashValue
+        txtPassword.tag = inputRegisterType.keyPassword.hashValue
         
-        //content input date
+        inputList.append(txtName)
+        inputList.append(txtDocument)
+        inputList.append(txtMail)
+        inputList.append(txtPassword)
+        
+        txtName.delegate = self
+        txtDocument.delegate = self
+        txtMail.delegate = self
+        txtPassword.delegate = self
+        
+        btnCreated.frame = CGRect(x:(self.view.frame.size.width-285*valuePro)/2, y: 408.91*valuePro, width: 285*valuePro, height: 44*valuePro)
+        btnCreated.layer.cornerRadius = btnCreated.frame.size.height/2
+        
+        lineName.frame =  CGRect(x:(self.view.frame.size.width-272*valuePro)/2, y: 188*valuePro, width: 272*valuePro, height: 1*valuePro)
+        lineName.backgroundColor = UIColor.init(hexString: "b3b3b3")
+        
+        lineDocument.frame =  CGRect(x:(self.view.frame.size.width-272*valuePro)/2, y: 237*valuePro, width: 272*valuePro, height: 1*valuePro)
+        lineDocument.backgroundColor = UIColor.init(hexString: "b3b3b3")
+        
+        lineMail.frame =  CGRect(x:(self.view.frame.size.width-272*valuePro)/2, y: 286*valuePro, width: 272*valuePro, height: 1*valuePro)
+        lineMail.backgroundColor = UIColor.init(hexString: "b3b3b3")
+        
+        linePassword.frame =  CGRect(x:(self.view.frame.size.width-272*valuePro)/2, y: 335*valuePro, width: 272*valuePro, height: 1*valuePro)
+        linePassword.backgroundColor = UIColor.init(hexString: "b3b3b3")
+        
+        lblTerms.frame = CGRect(x: (screenSize.width-272*valuePro)/2, y: 350*valuePro, width: 272*valuePro, height: 46*valuePro)
+        
         let imageIcon = UIImageView(image: #imageLiteral(resourceName: "UserIcon"))
         imageIcon.frame = CGRect(x:32.938*valuePro, y: 148.089*valuePro, width: 30*valuePro, height: 30*valuePro)
         self.view.addSubview(imageIcon)
-        let inputName = UITextField()
-        inputName.frame = CGRect(x:71.51*valuePro, y: 148.089*valuePro, width: 200*valuePro, height: 30*valuePro)
-        inputName.backgroundColor = UIColor.init(hexString: "f2f2f2")
-        inputName.placeholder = "Nombre"
-        inputName.textColor = UIColor.init(hexString: "4f1563")
-        inputName.textAlignment = NSTextAlignment.center
-        self.view.addSubview(inputName)
-        let viewLine = UIView()
-        viewLine.frame = CGRect(x:(self.view.frame.size.width-272*valuePro)/2, y: 192*valuePro, width: 272*valuePro, height: 1*valuePro)
-        viewLine.backgroundColor = UIColor.init(hexString: "cbc9cb")
-        self.view.addSubview(viewLine)
-        
         
         let imageIcon1 = UIImageView(image: #imageLiteral(resourceName: "UserIcon"))
         imageIcon1.frame = CGRect(x:32.938*valuePro, y: 202.406*valuePro, width: 30*valuePro, height: 30*valuePro)
         self.view.addSubview(imageIcon1)
-        let inputDNI = UITextField()
-        inputDNI.frame = CGRect(x:71.51*valuePro, y: 202.406*valuePro, width: 200*valuePro, height: 30*valuePro)
-        inputDNI.backgroundColor = UIColor.init(hexString: "f2f2f2")
-        inputDNI.placeholder = "DNI"
-        inputDNI.textColor = UIColor.init(hexString: "4f1563")
-        inputDNI.textAlignment = NSTextAlignment.center
-        self.view.addSubview(inputDNI)
-        let viewLine1 = UIView()
-        viewLine1.frame = CGRect(x:(self.view.frame.size.width-272*valuePro)/2, y: 242*valuePro, width: 272*valuePro, height: 1*valuePro)
-        viewLine1.backgroundColor = UIColor.init(hexString: "cbc9cb")
-        self.view.addSubview(viewLine1)
-        
-        
+
         let imageIcon2 = UIImageView(image: #imageLiteral(resourceName: "UserIcon"))
         imageIcon2.frame = CGRect(x:32.938*valuePro, y: 251.406*valuePro, width: 30*valuePro, height: 30*valuePro)
         self.view.addSubview(imageIcon2)
-        let inputCorreo = UITextField()
-        inputCorreo.frame = CGRect(x:71.51*valuePro, y: 251.406*valuePro, width: 200*valuePro, height: 30*valuePro)
-        inputCorreo.backgroundColor = UIColor.init(hexString: "f2f2f2")
-        inputCorreo.placeholder = "Correo"
-        inputCorreo.textColor = UIColor.init(hexString: "4f1563")
-        inputCorreo.textAlignment = NSTextAlignment.center
-        self.view.addSubview(inputCorreo)
-        let viewLine2 = UIView()
-        viewLine2.frame = CGRect(x:(self.view.frame.size.width-272*valuePro)/2, y: 292*valuePro, width: 272*valuePro, height: 1*valuePro)
-        viewLine2.backgroundColor = UIColor.init(hexString: "cbc9cb")
-        self.view.addSubview(viewLine2)
-        
         
         let imageIcon3 = UIImageView(image: #imageLiteral(resourceName: "PasswordIcon"))
         imageIcon3.frame = CGRect(x:32.938*valuePro, y: 300.406*valuePro, width: 30*valuePro, height: 30*valuePro)
         self.view.addSubview(imageIcon3)
-        let inputPass = UITextField()
-        inputPass.frame = CGRect(x:71.51*valuePro, y: 300.406*valuePro, width: 200*valuePro, height: 30*valuePro)
-        inputPass.backgroundColor = UIColor.clear
-        inputPass.placeholder = "Contraseña"
-        inputPass.textColor = UIColor.init(hexString: "4f1563")
-        inputPass.textAlignment = NSTextAlignment.center
-        self.view.addSubview(inputPass)
-        
-        
-        
-        
-        let btnRegister = UIButton()
-        btnRegister.frame = CGRect(x:(self.view.frame.size.width-285*valuePro)/2, y: 408.91*valuePro, width: 285*valuePro, height: 44*valuePro)
-        btnRegister.titleLabel?.font = UIFont(name: "Helveti", size: 13.80*valuePro)
-        btnRegister.layer.cornerRadius = btnRegister.frame.size.height/2
-        btnRegister.backgroundColor = UIColor.init(hexString: "00a4d1")
-        btnRegister.setTitle("Crear Cuenta", for: UIControlState.normal)
-        btnRegister.setTitleColor(UIColor.white , for: UIControlState.normal)
-        self.view.addSubview(btnRegister)
-        
-        
         
     }
+   
+    // MARK: - UITextField
+   
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        switch textField.tag {
+        case inputRegisterType.keyName.hashValue:
+           
+            let inputText:UITextField = self.inputList[inputRegisterType.keyDocument.hashValue]
+            inputText.becomeFirstResponder()
+            
+            break
+        case inputRegisterType.keyDocument.hashValue:
+            
+            let inputText:UITextField = self.inputList[inputRegisterType.keyEmail.hashValue]
+            inputText.becomeFirstResponder()
+            
+            break
+        case inputRegisterType.keyEmail.hashValue:
+            
+            let inputText:UITextField = self.inputList[inputRegisterType.keyPassword.hashValue]
+            inputText.becomeFirstResponder()
+            
+            break
+        case inputRegisterType.keyPassword.hashValue:
     
-    
+            textField.resignFirstResponder()
+            break
+        default:
+            return true
+        }
+        return true
+    }
     
 
+    @IBAction func tapResign(_ sender: Any) {
+        for inputUX in self.inputList {
+            let inputTxt = inputUX
+            inputTxt.resignFirstResponder()
+        }
+    }
 }

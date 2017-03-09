@@ -261,34 +261,36 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
     func registerManualValidate(sender:UIButton)  {
         //call to firebase
-        activityIndicatorView.startAnimating()
-        let inputTextMail:UITextField = self.inputList[inputType.keyMail.hashValue]
-        let inputTextPassword:UITextField = self.inputList[inputType.keyPassword.hashValue]
-        self.btnRegis.isHidden = true
-        
-        if inputTextMail.text != "" && inputTextPassword.text != "" {
-            
-            let email = inputTextMail.text
-            let password = inputTextPassword.text
-            
-            FIRAuth.auth()?.createUser(withEmail: email!, password: password!, completion: { (user: FIRUser?, error) in
-
-                self.activityIndicatorView.stopAnimating()
-                self.btnRegis.isHidden = false
-                if error == nil {
-
-                    print("register successful")
-                }else{
-                    
-                    print("register failure:\nerror:\(error.debugDescription)")
-                }
-            })
-            
-            
-        }else{
-            
-            sender.isHidden = false
-        }
+        let registerVC:RegisterViewController = RegisterViewController(nibName: "RegisterViewController", bundle: nil)
+        self.navigationController?.present(registerVC, animated: true, completion: nil)
+//        activityIndicatorView.startAnimating()
+//        let inputTextMail:UITextField = self.inputList[inputType.keyMail.hashValue]
+//        let inputTextPassword:UITextField = self.inputList[inputType.keyPassword.hashValue]
+//        self.btnRegis.isHidden = true
+//        
+//        if inputTextMail.text != "" && inputTextPassword.text != "" {
+//            
+//            let email = inputTextMail.text
+//            let password = inputTextPassword.text
+//            
+//            FIRAuth.auth()?.createUser(withEmail: email!, password: password!, completion: { (user: FIRUser?, error) in
+//
+//                self.activityIndicatorView.stopAnimating()
+//                self.btnRegis.isHidden = false
+//                if error == nil {
+//
+//                    print("register successful")
+//                }else{
+//                    
+//                    print("register failure:\nerror:\(error.debugDescription)")
+//                }
+//            })
+//            
+//            
+//        }else{
+//            
+//            sender.isHidden = false
+//        }
         
     }
     func showAlertError(message:String){

@@ -39,13 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         let frontNavigationController:UINavigationController
-
+        
         let mainRevealController = SWRevealViewController()
         
         let sidebar = LeftMenuViewController()
         
-        let homepage = RegisterViewController()
-        
+        let homepage = HomeViewController()
         
         frontNavigationController =  UINavigationController(rootViewController: homepage);
        
