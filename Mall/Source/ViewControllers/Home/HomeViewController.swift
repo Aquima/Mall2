@@ -33,15 +33,16 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         revealVC.panGestureRecognizer()
         revealVC.tapGestureRecognizer()
         
-        let imageTopBar = UIImageView(image:#imageLiteral(resourceName: "logoMall"))
-        imageTopBar.frame = CGRect(x: 108*valuePro, y: 20*valuePro, width: 103*valuePro, height: 30*valuePro)
-        self.view.addSubview(imageTopBar)
-        
         let topBar:UIView = UIView()
         topBar.frame =  CGRect(x:0, y:0, width:  self.view.frame.size.width, height: 55*valuePro)
         topBar.backgroundColor = UIColor.init(hexString: "4f1563")
         self.view.addSubview(topBar)
+
+        let imageTopBar = UIImageView(image:#imageLiteral(resourceName: "logoMall"))
+        imageTopBar.frame = CGRect(x: 108*valuePro, y: 20*valuePro, width: 103*valuePro, height: 30*valuePro)
+        self.view.addSubview(imageTopBar)
         
+
         let btnMenu:UIButton = UIButton()
         btnMenu.setBackgroundImage(#imageLiteral(resourceName: "menu"), for: .normal)
         btnMenu.frame = CGRect(x:0, y:11*valuePro, width: 44*valuePro, height: 44*valuePro)

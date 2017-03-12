@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+
 enum inputRegisterType{
     case keyName
     case keyDocument
@@ -14,6 +16,7 @@ enum inputRegisterType{
     case keyPassword
 }
 class RegisterViewController: UIViewController, UITextFieldDelegate {
+    //declare a User Model  var currentUser: User!
    let screenSize: CGRect = UIScreen.main.bounds
     
     var inputList:[UITextField] = []
@@ -146,5 +149,39 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             let inputTxt = inputUX
             inputTxt.resignFirstResponder()
         }
+    }
+    func registerManual(){
+        //        activityIndicatorView.startAnimating()
+                let inputTextMail:UITextField = self.inputList[inputType.keyMail.hashValue]
+                let inputTextPassword:UITextField = self.inputList[inputType.keyPassword.hashValue]
+               // self.btnRegis.isHidden = true
+        
+                if inputTextMail.text != "" && inputTextPassword.text != "" {
+        
+                    let email = inputTextMail.text
+                    let password = inputTextPassword.text
+        
+                    FIRAuth.auth()?.createUser(withEmail: email!, password: password!, completion: { (user: FIRUser?, error) in
+        
+                     //   self.activityIndicatorView.stopAnimating()
+                       // self.btnRegis.isHidden = false
+                        if error == nil {
+                            //cuando creo delegar succes completed y  crear email y password al currentUser
+                            var currentUser: User!
+                            currentUser.password = self.inputList[inputRegisterType.keyPassword.hashValue].text
+                            currentUser.email = self.inputList[inputRegisterType.keyEmail.hashValue].text
+                            print("register successful")
+                        }else{
+        
+                            print("register failure:\nerror:\(error.debugDescription)")
+                        }
+                    })
+                    
+                    
+                }else{
+                    
+                  //  sender.isHidden = false
+                }
+
     }
 }
