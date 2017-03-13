@@ -40,7 +40,7 @@
                     <rect key="frame" x="81" y="60" width="150" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nombre" textAlignment="center" minimumFontSize="17" id="9AV-CA-Y2Z">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nombre" minimumFontSize="17" id="9AV-CA-Y2Z">
                     <rect key="frame" x="41" y="145" width="236" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <color key="textColor" red="0.30980392156862746" green="0.082352941176470587" blue="0.38823529411764707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -52,7 +52,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" id="XI5-qO-Rw6">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" id="XI5-qO-Rw6">
                     <rect key="frame" x="41" y="241" width="236" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <color key="textColor" red="0.30980392159999998" green="0.08235294118" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -64,7 +64,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Contraseña" textAlignment="center" minimumFontSize="17" id="MaL-Wi-Nti">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Contraseña" minimumFontSize="17" id="MaL-Wi-Nti">
                     <rect key="frame" x="41" y="292" width="236" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <color key="textColor" red="0.30980392159999998" green="0.08235294118" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -76,7 +76,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Document" textAlignment="center" minimumFontSize="17" id="lJH-az-taU">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Document" minimumFontSize="17" id="lJH-az-taU">
                     <rect key="frame" x="41" y="196" width="236" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <color key="textColor" red="0.30980392159999998" green="0.08235294118" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -93,7 +93,8 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <attributedString key="attributedText">
                         <fragment>
-                            <string key="content">Al crear esta cuenta usted esta de acuerdo con nuestras</string>
+                            <string key="content">Al crear esta cuenta usted esta de acuerdo 
+con nuestras</string>
                             <attributes>
                                 <color key="NSColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <font key="NSFont" size="12" name="HelveticaNeue-Light"/>
@@ -122,7 +123,8 @@
                             </attributes>
                         </fragment>
                         <fragment>
-                            <string key="content">y </string>
+                            <string key="content">y 
+</string>
                             <attributes>
                                 <color key="NSColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <font key="NSFont" size="12" name="HelveticaNeue-Light"/>

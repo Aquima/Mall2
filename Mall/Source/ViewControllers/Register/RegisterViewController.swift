@@ -8,7 +8,9 @@
 
 import UIKit
 import Firebase
-
+protocol RegisterViewControllerDelegate {
+    func completedRegister(currentUser:User)
+}
 enum inputRegisterType{
     case keyName
     case keyDocument
@@ -16,8 +18,10 @@ enum inputRegisterType{
     case keyPassword
 }
 class RegisterViewController: UIViewController, UITextFieldDelegate {
-    //declare a User Model  var currentUser: User!
-   let screenSize: CGRect = UIScreen.main.bounds
+
+    var delegate:RegisterViewControllerDelegate?
+    var currentUser: User!
+    let screenSize: CGRect = UIScreen.main.bounds
     
     var inputList:[UITextField] = []
     
@@ -35,7 +39,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Initialization code
-        drawBody()
+     //   drawBody()
         //let valuePro:CGFloat  = CGFloat(NSNumber.getPropotionalValueDevice())
         /*
         let btnClose = UIButton()
@@ -49,17 +53,15 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(btnClose)*/
         
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        drawBody()
+    }
     func drawBody()  {
         view.backgroundColor = UIColor.init(hexString: "f2f2f2")
         let valuePro:CGFloat  = CGFloat(NSNumber.getPropotionalValueDevice())
-        imgLogo.frame = CGRect(x:(320*valuePro-150*valuePro)/2, y: 56*valuePro, width: 150*valuePro, height: 60*valuePro)
+        imgLogo.frame = CGRect(x:(screenSize.width-150*valuePro)/2, y: 56*valuePro, width: 150*valuePro, height: 60*valuePro)
         
-        txtName.frame = CGRect(x:71.51*valuePro, y: 148.089*valuePro, width: 200*valuePro, height: 30*valuePro)
-        txtDocument.frame = CGRect(x:71.51*valuePro, y: 202.406*valuePro, width: 200*valuePro, height: 30*valuePro)
-        txtMail.frame = CGRect(x:71.51*valuePro, y: 251.406*valuePro, width: 200*valuePro, height: 30*valuePro)
-        txtPassword.frame = CGRect(x:71.51*valuePro, y: 300.406*valuePro, width: 200*valuePro, height: 30*valuePro)
-        
+     
         txtName.tag = inputRegisterType.keyName.hashValue
         txtDocument.tag = inputRegisterType.keyDocument.hashValue
         txtMail.tag = inputRegisterType.keyEmail.hashValue
@@ -75,22 +77,23 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         txtMail.delegate = self
         txtPassword.delegate = self
         
-        btnCreated.frame = CGRect(x:(self.view.frame.size.width-285*valuePro)/2, y: 408.91*valuePro, width: 285*valuePro, height: 44*valuePro)
-        btnCreated.layer.cornerRadius = btnCreated.frame.size.height/2
-        
-        lineName.frame =  CGRect(x:(self.view.frame.size.width-272*valuePro)/2, y: 188*valuePro, width: 272*valuePro, height: 1*valuePro)
+        lineName.frame =  CGRect(x:(screenSize.width-272*valuePro)/2, y: 188*valuePro, width: 272*valuePro, height: 1*valuePro)
         lineName.backgroundColor = UIColor.init(hexString: "b3b3b3")
         
-        lineDocument.frame =  CGRect(x:(self.view.frame.size.width-272*valuePro)/2, y: 237*valuePro, width: 272*valuePro, height: 1*valuePro)
+        lineDocument.frame =  CGRect(x:(screenSize.width-272*valuePro)/2, y: 237*valuePro, width: 272*valuePro, height: 1*valuePro)
         lineDocument.backgroundColor = UIColor.init(hexString: "b3b3b3")
         
-        lineMail.frame =  CGRect(x:(self.view.frame.size.width-272*valuePro)/2, y: 286*valuePro, width: 272*valuePro, height: 1*valuePro)
+        lineMail.frame =  CGRect(x:(screenSize.width-272*valuePro)/2, y: 286*valuePro, width: 272*valuePro, height: 1*valuePro)
         lineMail.backgroundColor = UIColor.init(hexString: "b3b3b3")
         
-        linePassword.frame =  CGRect(x:(self.view.frame.size.width-272*valuePro)/2, y: 335*valuePro, width: 272*valuePro, height: 1*valuePro)
+        linePassword.frame =  CGRect(x:(screenSize.width-272*valuePro)/2, y: 335*valuePro, width: 272*valuePro, height: 1*valuePro)
         linePassword.backgroundColor = UIColor.init(hexString: "b3b3b3")
         
         lblTerms.frame = CGRect(x: (screenSize.width-272*valuePro)/2, y: 350*valuePro, width: 272*valuePro, height: 46*valuePro)
+        
+     //   btnCreated.frame = CGRect(x:(screenSize.width-285*valuePro)/2, y: 408.91*valuePro, width: 285*valuePro, height: 44*valuePro)
+        btnCreated.layer.cornerRadius = btnCreated.frame.size.height/2
+        btnCreated.addTarget(self, action: #selector(self.registerManual(_:)), for: UIControlEvents.touchUpInside)
         
         let imageIcon = UIImageView(image: #imageLiteral(resourceName: "UserIcon"))
         imageIcon.frame = CGRect(x:32.938*valuePro, y: 148.089*valuePro, width: 30*valuePro, height: 30*valuePro)
@@ -107,6 +110,12 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         let imageIcon3 = UIImageView(image: #imageLiteral(resourceName: "PasswordIcon"))
         imageIcon3.frame = CGRect(x:32.938*valuePro, y: 300.406*valuePro, width: 30*valuePro, height: 30*valuePro)
         self.view.addSubview(imageIcon3)
+        
+        self.txtName.frame = CGRect(x:71.51*valuePro, y: 148.089*valuePro, width: 200*valuePro, height: 30*valuePro)
+      //  self.txtName.backgroundColor = UIColor.red
+        self.txtDocument.frame = CGRect(x:71.51*valuePro, y: 202.406*valuePro, width: 200*valuePro, height: 30*valuePro)
+        self.txtMail.frame = CGRect(x:71.51*valuePro, y: 251.406*valuePro, width: 200*valuePro, height: 30*valuePro)
+        self.txtPassword.frame = CGRect(x:71.51*valuePro, y: 300.406*valuePro, width: 200*valuePro, height: 30*valuePro)
         
     }
    
@@ -143,17 +152,27 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-
+    // MARK: - Action
+    func showAlertError(message:String){
+        let uiAlert = UIAlertController(title: "Real Plaza", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        
+        uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+            
+        }))
+        self.present(uiAlert, animated: true, completion: nil)
+        
+    }
     @IBAction func tapResign(_ sender: Any) {
         for inputUX in self.inputList {
             let inputTxt = inputUX
             inputTxt.resignFirstResponder()
         }
     }
-    func registerManual(){
+    func registerManual(_ sender: UIButton){
         //        activityIndicatorView.startAnimating()
-                let inputTextMail:UITextField = self.inputList[inputType.keyMail.hashValue]
-                let inputTextPassword:UITextField = self.inputList[inputType.keyPassword.hashValue]
+                let inputTextMail:UITextField = self.inputList[inputRegisterType.keyEmail.hashValue]
+                let inputTextPassword:UITextField = self.inputList[inputRegisterType.keyPassword.hashValue]
                // self.btnRegis.isHidden = true
         
                 if inputTextMail.text != "" && inputTextPassword.text != "" {
@@ -167,12 +186,37 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                        // self.btnRegis.isHidden = false
                         if error == nil {
                             //cuando creo delegar succes completed y  crear email y password al currentUser
-                            var currentUser: User!
-                            currentUser.password = self.inputList[inputRegisterType.keyPassword.hashValue].text
-                            currentUser.email = self.inputList[inputRegisterType.keyEmail.hashValue].text
-                            print("register successful")
+                            
+                            self.currentUser.password = self.inputList[inputRegisterType.keyPassword.hashValue].text
+                            self.currentUser.email = self.inputList[inputRegisterType.keyEmail.hashValue].text
+                            self.currentUser.name = self.inputList[inputRegisterType.keyName.hashValue].text
+                            self.currentUser.document = self.inputList[inputRegisterType.keyDocument.hashValue].text
+                            //llamamos a un protocolo
+                            self.delegate?.completedRegister(currentUser: self.currentUser)
+                            self.dismiss(animated: true, completion: {
+                                  print("register successful")
+                            })
+                          
                         }else{
-        
+                            if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
+                                
+                                switch errCode {
+                                case .errorCodeInvalidEmail:
+                                    print("invalid email")
+                                    self.showAlertError(message: "El Correo Electronico no es valido")
+                                case .errorCodeWrongPassword:
+                                    print("invalid password")
+                                    self.showAlertError(message: "Contraseña incorrecta")
+                                    //                    case .error:
+                                    //                        print("invalid password")
+                                //
+                                default:
+                                    print("Other error!")
+                                    self.showAlertError(message: "Verifique los datos ingresados")
+                                }
+                                
+                            }
+
                             print("register failure:\nerror:\(error.debugDescription)")
                         }
                     })
@@ -184,4 +228,5 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 }
 
     }
+
 }

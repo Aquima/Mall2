@@ -14,8 +14,10 @@ enum inputType{
     case keyMail
     case keyPassword
 }
-class LogInViewController: UIViewController, UITextFieldDelegate {
+class LogInViewController: UIViewController, UITextFieldDelegate, RegisterViewControllerDelegate {
 
+    var currentUser: User!
+    
     var btnRegis:UIButton!
     var btnLogeo:UIButton!
     var btnOlvidarPass:UIButton!
@@ -220,50 +222,25 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             
             let email = inputTextMail.text
             let password = inputTextPassword.text
-       
-            FIRAuth.auth()?.signIn(withEmail: email!, password: password!, completion: { (user: FIRUser?, error) in
-                
-                self.activityIndicatorView.stopAnimating()
-                self.btnLogeo.isHidden = false
-                if error != nil {
-                    if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
-                        
-                        switch errCode {
-                        case .errorCodeInvalidEmail:
-                            print("invalid email")
-                            self.showAlertError(message: "El Correo Electronico no es valido")
-                        case .errorCodeWrongPassword:
-                            print("invalid password")
-                            self.showAlertError(message: "Contraseña incorrecta")
-                            //                    case .error:
-                            //                        print("invalid password")
-                        //
-                        default:
-                            print("Other error!")
-                            self.showAlertError(message: "Verifique los datos ingresados")
-                        }
-                        
-                    }
-                }else{
-                      print("signIn successful")
-                      self.showAlertError(message: "Bienvenido!")
-                }
-               
-                
-            })
-
-
+            self.currentUser = User()
+            self.currentUser.password = password
+            self.currentUser.email = email
+            
+            self.logInWitUser(user: self.currentUser)
+            
         }else{
             
             sender.isHidden = false
         }
 
     }
+    // MARK: - Actions
     func registerManualValidate(sender:UIButton)  {
         //call to firebase
         let registerVC:RegisterViewController = RegisterViewController(nibName: "RegisterViewController", bundle: nil)
-        //let model = User(firstName: "David", lastName: "Blaine")
-        //registerVC.currentUser =
+        self.currentUser = User()
+        registerVC.currentUser = self.currentUser
+        registerVC.delegate = self
         self.navigationController?.present(registerVC, animated: true, completion: nil)
         
     }
@@ -277,5 +254,42 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
          self.present(uiAlert, animated: true, completion: nil)
       
     }
+    func logInWitUser(user:User){
+        FIRAuth.auth()?.signIn(withEmail: user.email, password: user.password, completion: { (user: FIRUser?, error) in
+            
+            self.activityIndicatorView.stopAnimating()
+            self.btnLogeo.isHidden = false
+            if error != nil {
+                if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
+                    
+                    switch errCode {
+                    case .errorCodeInvalidEmail:
+                        print("invalid email")
+                        self.showAlertError(message: "El Correo Electronico no es valido")
+                    case .errorCodeWrongPassword:
+                        print("invalid password")
+                        self.showAlertError(message: "Contraseña incorrecta")
+                        //                    case .error:
+                        //                        print("invalid password")
+                    //
+                    default:
+                        print("Other error!")
+                        self.showAlertError(message: "Verifique los datos ingresados")
+                    }
+                    
+                }
+            }else{
+                print("signIn successful")
+                self.showAlertError(message: "Bienvenido!")
+            }
+            
+            
+        })
 
+    }
+// MARK: - RegisterViewControllerDelegate
+    func completedRegister(currentUser:User){
+        self.currentUser = currentUser
+        self.logInWitUser(user: self.currentUser)
+    }
 }

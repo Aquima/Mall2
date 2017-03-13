@@ -12,6 +12,7 @@ import UIKit
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate , SWRevealViewControllerDelegate {
 
     var btnMenu:UIButton!
+    let screenSize: CGRect = UIScreen.main.bounds
     
     
     override func viewDidLoad() {
@@ -34,14 +35,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         revealVC.tapGestureRecognizer()
         
         let topBar:UIView = UIView()
-        topBar.frame =  CGRect(x:0, y:0, width:  self.view.frame.size.width, height: 55*valuePro)
+        topBar.frame =  CGRect(x:0, y:0, width:  screenSize.width, height: 55*valuePro)
         topBar.backgroundColor = UIColor.init(hexString: "4f1563")
         self.view.addSubview(topBar)
 
         let imageTopBar = UIImageView(image:#imageLiteral(resourceName: "logoMall"))
-        imageTopBar.frame = CGRect(x: 108*valuePro, y: 20*valuePro, width: 103*valuePro, height: 30*valuePro)
+        imageTopBar.frame = CGRect(x: (topBar.frame.width-75*valuePro)/2, y: 20*valuePro, width: 75*valuePro, height: 30*valuePro)
         self.view.addSubview(imageTopBar)
-        
 
         let btnMenu:UIButton = UIButton()
         btnMenu.setBackgroundImage(#imageLiteral(resourceName: "menu"), for: .normal)
@@ -50,12 +50,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         topBar.addSubview(btnMenu)
         
         let viewPromo = UIView()
-        viewPromo.frame = CGRect(x:0, y: 55*valuePro, width: self.view.frame.size.width , height:151.23*valuePro)
+        viewPromo.frame = CGRect(x:0, y: 55*valuePro, width: screenSize.width , height:151.23*valuePro)
         viewPromo.backgroundColor = UIColor.white
         self.view.addSubview(viewPromo)
         
         let viewGreeting = UIView()
-        viewGreeting.frame = CGRect(x:0, y: 206.23*valuePro, width: self.view.frame.size.width , height:36.056*valuePro)
+        viewGreeting.frame = CGRect(x:0, y: 206.23*valuePro, width: screenSize.width , height:36.056*valuePro)
         viewGreeting.backgroundColor = UIColor.init(hexString: "4f1563")
         self.view.addSubview(viewGreeting)
         
@@ -66,17 +66,20 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         viewGreeting.addSubview(labelGreeting)
         
         
-        /*let viewList = UIView()
+        /*
+        let viewList = UIView()
         viewList.frame = CGRect(x: 0, y: 242.286*valuePro, width: self.view.frame.size.width, height: 283.443*valuePro)
         viewList.backgroundColor = UIColor.white
         self.view.addSubview(viewList)
         */
+        
         /*let image = UIImageView()
         image.frame = CGRect(x: 254.172*valuePro, y: 27.686*valuePro, width: 30.293*valuePro, height: 30.293*valuePro )
         image.image = #imageLiteral(resourceName: "userList")
         image.layer.cornerRadius = image.frame.size.height/2
         image.layer.masksToBounds = true
-        viewList.addSubview(image)*/
+        viewList.addSubview(image)
+        */
         
         
         let flowLayout = UICollectionViewFlowLayout()
