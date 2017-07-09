@@ -16,7 +16,7 @@ enum inputType{
 }
 class LogInViewController: UIViewController, UITextFieldDelegate, RegisterViewControllerDelegate {
 
-    var currentUser: User!
+    var currentUser: Person!
     
     var btnRegis:UIButton!
     var btnLogeo:UIButton!
@@ -222,7 +222,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate, RegisterViewCo
             
             let email = inputTextMail.text
             let password = inputTextPassword.text
-            self.currentUser = User()
+            self.currentUser = Person()
             self.currentUser.password = password
             self.currentUser.email = email
             
@@ -238,7 +238,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate, RegisterViewCo
     func registerManualValidate(sender:UIButton)  {
         //call to firebase
         let registerVC:RegisterViewController = RegisterViewController(nibName: "RegisterViewController", bundle: nil)
-        self.currentUser = User()
+        self.currentUser = Person()
         registerVC.currentUser = self.currentUser
         registerVC.delegate = self
         self.navigationController?.present(registerVC, animated: true, completion: nil)
@@ -254,19 +254,20 @@ class LogInViewController: UIViewController, UITextFieldDelegate, RegisterViewCo
          self.present(uiAlert, animated: true, completion: nil)
       
     }
-    func logInWitUser(user:User){
-        FIRAuth.auth()?.signIn(withEmail: user.email, password: user.password, completion: { (user: FIRUser?, error) in
+    func logInWitUser(user:Person){
+     
+        Auth.auth().signIn(withEmail: user.email, password: user.password, completion: { (user: User?, error) in
             
             self.activityIndicatorView.stopAnimating()
             self.btnLogeo.isHidden = false
             if error != nil {
-                if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
+                if let errCode = AuthErrorCode(rawValue: error!._code) {
                     
                     switch errCode {
-                    case .errorCodeInvalidEmail:
+                    case .invalidEmail:
                         print("invalid email")
                         self.showAlertError(message: "El Correo Electronico no es valido")
-                    case .errorCodeWrongPassword:
+                    case .wrongPassword:
                         print("invalid password")
                         self.showAlertError(message: "Contraseña incorrecta")
                         //                    case .error:
@@ -288,7 +289,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate, RegisterViewCo
 
     }
 // MARK: - RegisterViewControllerDelegate
-    func completedRegister(currentUser:User){
+    func completedRegister(currentUser:Person){
         self.currentUser = currentUser
         self.logInWitUser(user: self.currentUser)
     }

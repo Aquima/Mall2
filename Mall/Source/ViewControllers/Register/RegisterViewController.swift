@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 protocol RegisterViewControllerDelegate {
-    func completedRegister(currentUser:User)
+    func completedRegister(currentUser:Person)
 }
 enum inputRegisterType{
     case keyName
@@ -20,7 +20,7 @@ enum inputRegisterType{
 class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     var delegate:RegisterViewControllerDelegate?
-    var currentUser: User!
+    var currentUser: Person!
     let screenSize: CGRect = UIScreen.main.bounds
     
     var inputList:[UITextField] = []
@@ -180,7 +180,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     let email = inputTextMail.text
                     let password = inputTextPassword.text
         
-                    FIRAuth.auth()?.createUser(withEmail: email!, password: password!, completion: { (user: FIRUser?, error) in
+                    Auth.auth().createUser(withEmail: email!, password: password!, completion: { (user: User?, error) in
         
                      //   self.activityIndicatorView.stopAnimating()
                        // self.btnRegis.isHidden = false
@@ -198,13 +198,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                             })
                           
                         }else{
-                            if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
+                            if let errCode = AuthErrorCode(rawValue: error!._code) {
                                 
                                 switch errCode {
-                                case .errorCodeInvalidEmail:
+                                case .invalidEmail:
                                     print("invalid email")
                                     self.showAlertError(message: "El Correo Electronico no es valido")
-                                case .errorCodeWrongPassword:
+                                case .wrongPassword:
                                     print("invalid password")
                                     self.showAlertError(message: "Contraseña incorrecta")
                                     //                    case .error:

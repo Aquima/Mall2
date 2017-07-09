@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49A3D7311F12839A00C02582 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D7301F12839A00C02582 /* Person.swift */; };
 		49E0EBA51E70E3750050EE18 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E0EBA31E70E3750050EE18 /* RegisterViewController.swift */; };
 		49E0EBA61E70E3750050EE18 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49E0EBA41E70E3750050EE18 /* RegisterViewController.xib */; };
 		49E0EBA81E70FB010050EE18 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E0EBA71E70FB010050EE18 /* RegisterView.swift */; };
@@ -27,7 +28,6 @@
 		F00A94701E64DA5100630EE8 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F00A946E1E64DA5100630EE8 /* HomeViewController.xib */; };
 		F00A94741E64ED3800630EE8 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A94721E64ED3800630EE8 /* ColorExtensions.swift */; };
 		F00A94751E64ED3800630EE8 /* NumberExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A94731E64ED3800630EE8 /* NumberExtensions.swift */; };
-		F01FF8D71E750B22002BE8EC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01FF8D61E750B22002BE8EC /* User.swift */; };
 		F026A5571E67CF680078C717 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F026A5561E67CF680078C717 /* UserNotifications.framework */; };
 		F08FAD411E67BBEC0065A2C6 /* AppDelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08FAD401E67BBEC0065A2C6 /* AppDelegateExtension.swift */; };
 		F0C2AC1C1E650B4A00612CBC /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C2AC1B1E650B4A00612CBC /* SWRevealViewController.m */; };
@@ -41,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49A3D7301F12839A00C02582 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		49E0EBA31E70E3750050EE18 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		49E0EBA41E70E3750050EE18 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		49E0EBA71E70FB010050EE18 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -65,7 +66,6 @@
 		F00A946E1E64DA5100630EE8 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		F00A94721E64ED3800630EE8 /* ColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		F00A94731E64ED3800630EE8 /* NumberExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberExtensions.swift; sourceTree = "<group>"; };
-		F01FF8D61E750B22002BE8EC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F026A5561E67CF680078C717 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		F08FAD401E67BBEC0065A2C6 /* AppDelegateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateExtension.swift; sourceTree = "<group>"; };
 		F0C2AC1A1E650B4A00612CBC /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -233,7 +233,7 @@
 		F01FF8D51E750AFA002BE8EC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F01FF8D61E750B22002BE8EC /* User.swift */,
+				49A3D7301F12839A00C02582 /* Person.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -412,7 +412,6 @@
 				F00A94511E64AA8600630EE8 /* ViewController.swift in Sources */,
 				F00A94741E64ED3800630EE8 /* ColorExtensions.swift in Sources */,
 				49FA82CC1E67FE9D00C909C5 /* IntroViewController.swift in Sources */,
-				F01FF8D71E750B22002BE8EC /* User.swift in Sources */,
 				F00A944F1E64AA8600630EE8 /* AppDelegate.swift in Sources */,
 				F00A946A1E64D89000630EE8 /* LeftMenuViewController.swift in Sources */,
 				49E0EBA81E70FB010050EE18 /* RegisterView.swift in Sources */,
@@ -422,6 +421,7 @@
 				49E0EBA51E70E3750050EE18 /* RegisterViewController.swift in Sources */,
 				49FA82C81E67E21A00C909C5 /* NewsViewCell.swift in Sources */,
 				F0E8E6351E6650CC00C68F85 /* LogInViewController.swift in Sources */,
+				49A3D7311F12839A00C02582 /* Person.swift in Sources */,
 				F08FAD411E67BBEC0065A2C6 /* AppDelegateExtension.swift in Sources */,
 				F00A946F1E64DA5100630EE8 /* HomeViewController.swift in Sources */,
 			);

@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var placeEvents : [GMBLVisit] = []
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        FIRApp.configure()
+        FirebaseApp.configure()
         // Override point for customization after application launch.
          window? = UIWindow()
         //this is for set permissions
@@ -132,12 +132,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 //             ref.child("\(visit.visitID!)/email").setValue("")
 //        }
        
-        let ref = FIRDatabase.database().reference()
+        let ref = Database.database().reference()
         let key = ref.child("visits").childByAutoId().key
         let post:[String:Any] = ["arrivalDate": visit.arrivalDate?.description ?? "" ,
                                  "departureDate": visit.departureDate?.description ?? "",
                                  "dwellTime": visit.dwellTime,
-                                 "email": FIRAuth.auth()?.currentUser?.email ?? ""]
+                                 "email": Auth.auth().currentUser?.email ?? ""]
         let childUpdates = ["/visits/\(key)": post]
         ref.updateChildValues(childUpdates)
        
@@ -150,12 +150,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         showPushNotification(title: "Vuelve Pronto a Real Plaza", details: "power off")
         self.placeEvents.insert(visit, at: 0)
         // self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableViewRowAnimation.automatic)
-        let ref = FIRDatabase.database().reference()
+        let ref = Database.database().reference()
         let key = ref.child("visits").childByAutoId().key
         let post:[String:Any] = ["arrivalDate": visit.arrivalDate?.description ?? "" ,
                                  "departureDate": visit.departureDate?.description ?? "",
                                  "dwellTime": visit.dwellTime,
-                                 "email": FIRAuth.auth()?.currentUser?.email ?? ""]
+                                 "email": Auth.auth().currentUser?.email ?? ""]
         let childUpdates = ["/visits/\(key)": post]
         ref.updateChildValues(childUpdates)
     }
